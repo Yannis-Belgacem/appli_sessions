@@ -1,0 +1,52 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}Liste des stagiaires{% endblock %}
+
+{% block body %}
+    <div class="titleBlock">
+        <h1>Liste des stagiaires</h1>
+    </div>
+    <div class="listSearchField">
+        {{ form_start(searchForm) }}
+        {{ form_row(searchForm.nom, {'label': " ", 'attr': {'placeholder': 'Chercher un stagiaire par son nom'}}) }}
+        <button class="searchButton">Rechercher <i class="fas fa-search"></i></button>
+        {{ form_end(searchForm) }}
+    </div>
+
+    <table class="uk-table uk-table-striped">
+        <thead>
+            <tr>
+                <th> Nom complet</th>
+                <th> Date de naissance </th>
+                <th> Sexe </th>
+                <th> Commune </th>
+                <th> Adresse </th>
+                <th> Email </th>
+                <th> Téléphone </th>
+                <th> Edition </th>
+                <th> Suppression </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stagiaire in stagiaires %}
+                <tr>
+                    <td><a href="{{ path('stagiaire_show', {'id':stagiaire.id}) }}">{{ stagiaire.nom |upper ~' '~ stagiaire.prenom}} </a></td>
+                    <td> {{ stagiaire.dateNaissance | date ('d/m/Y')}}</td>
+                    <td> 
+                        {% if stagiaire.sexe == 1 %}
+                            M 
+                        {% elseif stagiaire.sexe == 0 %}
+                            F 
+                        {% endif %}
+                    </td>
+                    <td> {{ stagiaire.ville }} </td>
+                    <td> {{ stagiaire.adresse }} </td> 
+                    <td> {{ stagiaire.email }} </td>
+                    <td> {{ stagiaire.telephone }} </td>
+                    <td><a href="{{ path('stagiaire_edit', {'id':stagiaire.id}) }}"><i class="fas fa-pen"></i></a></td>
+                    <td><a href="{{ path('stagiaire_delete', {'id':stagiaire.id}) }}"><i class="fas fa-user-minus"></i></a></td>
+                </tr>
+            {% endfor %}
+                <div class="pagination">{{ knp_pagination_render(stagiaires) }}</div>
+                <span><a class="addButton" href="{{ path('stagiaire_add')}}"><i class="fas fa-plus"></i>Ajouter un(e) stagiaire</a></span>
+{% endblock %}

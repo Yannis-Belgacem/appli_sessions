@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}Informations sur le module{% endblock %}
+ 
+{% block body %}
+        <a class="addButton" href="{{ path('module_list') }}"><i class="fas fa-arrow-left"></i>Retour aux modules</a>
+        <h3 class="infostagiaire"><i class="fas fa-info-circle"></i>Fiche module</h3>
+        <div class="z-depth-2">
+        <h3>{{ module.intitule }}</h3>
+        Catégorie : {{ module.categorie.nom }}<br>
+        
+        <ul>Assigné aux sessions : 
+        {% for programme in module.programmes %}
+        <li><a id="blacklink" href="{{ path('session_show', {'id':programme.session.id}) }}">{{ programme.session.intitule }}</a></li>
+        {% else %}
+        aucune session.
+        {% endfor %}
+        </ul><br>
+        
+        <a class="waves-effect waves-light btn grey darken-4grey darken-4" href="{{ path('module_edit', {'id':module.id}) }}">Editer</a>
+        <a class="waves-effect waves-light btn grey darken-4grey darken-4" href="{{ path('module_delete', {'id':module.id}) }}">Supprimer</a><br>
+
+        </div>
+
+            
+    
+{% endblock %}

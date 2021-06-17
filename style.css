@@ -1,0 +1,341 @@
+body{
+    box-sizing: border-box;
+    margin: 0, 1em;
+}
+
+.titleBlock {
+    text-align: center;
+}
+
+h1 {   
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3{
+    margin-right: 1em;
+}
+
+h4 {
+    margin-left: 2em;
+}
+a {
+    color:  #42a79c;
+}
+
+#homePageImage {
+    height: 50%;
+    margin-left: 35%;
+}
+
+.formWrapper{
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 1em;
+}
+.fa-trash{
+    color: black;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+}
+
+.fa-user, .fa-user-minus, .fa-address-card {
+    font-size: 1em;
+    margin-right: 5px;
+    justify-content: center;
+    text-align: center;
+}
+
+.butcenter{
+    justify-content: center;
+    text-align: center;
+}
+.trash{
+    justify-content: center;
+    text-align: center;
+}
+
+tr {
+    
+}
+
+td{
+
+}
+
+.marginbut{
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.fa-trash {
+    color: rgb(158, 10, 10);
+}
+
+.fa-user-minus{
+    color: rgb(158, 10, 10);
+}
+
+i {
+    opacity: 90%;
+    transition: all 0.25s;
+}
+
+i:hover {
+    opacity: 100%;
+}
+
+.addButton {
+    opacity: 90%;
+    background-color:#26a69a; 
+    border: none;
+    color: white;
+    padding: 0.75em 1em;
+    margin: 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.75em;
+    border-radius: 0.3em;
+    transition: all 0.5s;
+}
+
+.addButton:hover{
+    opacity: 100%;
+    background-color: #42a79c;
+}
+
+.searchButton {
+    opacity: 90%;
+    background-color: #26a69a; 
+    border: none;
+    color: white;
+    padding: 0.75em 1em;
+    margin: 0.5em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.75em;
+    border-radius: 0.3em;
+    transition: all 0.5s;
+}
+
+.searchButton:hover{
+    opacity: 100%;
+    background-color: #42a79c;
+}
+
+.backArrow {
+    background-color: #26a69a; 
+    border: none;
+    color: white;
+    padding: 0.5em 2em;
+    margin: 0.5em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.75em;
+    border-radius: 0.3em;
+}
+
+.backArrow:hover{
+    background-color: #42a79c;
+    transform: translate(0, -1px);
+}
+
+.listSearchField {
+    
+}
+
+.pagination {
+    position: fixed;
+    bottom: 0;
+    left:0; 
+    right:0;
+    margin-left: .25em;
+}
+
+.sf-toolbar-clearer {
+    height: 0;
+}
+
+table {
+    margin: 0 0.5em 2em ;
+}
+
+nav ul{
+    display: flex;
+}
+
+#mainLinks{
+    flex: 1;
+}
+
+#loginWrapper{
+}
+
+#loginWrapper a{
+    display: initial;
+}
+
+.infostagiaire{
+    text-align: left;
+    margin-left: 2em;
+    text-align: center;
+}
+#icon{
+    font-size: 35px;
+    color: black;
+}
+    
+#blacklink{
+    
+    text-decoration: underline;
+    color: black;
+}
+
+.title{
+    text-align: center;
+    font-size: 40px;
+    padding: 0%;
+}
+
+.z-depth-2{
+    background-color:#26a69a;
+    font-size: 22px;
+    padding: 1em;
+    margin-top: 1em;
+    text-align: center;
+    justify-content: center;
+    font-family: Arial;
+    width: 50%;
+    height: 50%;
+    margin: auto;  
+}
+
+.rememberMe{
+    margin: 0.5em;
+}
+
+.flash-notice{
+    background-color: lime;
+    width: 100%;
+}
+
+.flash-success{
+    background-color: rgba(10, 150, 10, 0.712);
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 100%;
+    text-align: center;  
+}
+
+.flash-error{
+    background-color: rgb(151, 10, 10);
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 100%;
+    text-align: center;  
+}
+#sessionItems{
+    color: black;
+    opacity: 90%;  
+    
+}
+
+#sessionItems:hover {
+    opacity: 100%;
+    transform: translate(0, -1px);
+}
+
+#completCase {
+    color: red;
+    font-weight: 400;
+
+}
+
+#complet {
+    background-color: #26a69a;
+    color: white;
+}
+
+#complet>.cent>.butcenter>i {
+    color: white;
+}
+
+#complet>td>a {
+    color: white;
+}
+
+#bienvenue {
+    padding-left: 2em;
+    font-weight: bold;
+}
+
+.infostagiaire{
+    padding-left: 0;
+}
+
+button {
+    background-color: #26a69a; 
+    border: none;
+    color: white;
+    padding: 0.5em 2em;
+    margin: 0.5em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.75em;
+    transition: all 0.5s;
+    border-radius: 0.3em;
+}
+
+button:hover {
+    opacity: 100%;
+    background-color: #42a79c;
+}
+
+td>a>i {
+
+    margin: auto;
+}
+
+#sessionIcons{
+    color: white;
+}
+
+#homeUserIcon {
+
+}
+
+#intitule {
+    
+}
+
+.durationMatch {    
+    color: lawngreen;
+    font-weight: 400;
+    
+}
+
+.durationNoMatch {   
+    color: red;
+    font-weight: 400;   
+}
+
+#sessionIcons {
+    margin-left: 3em;
+}
+
+.whiteLink{
+    color: white;
+    font-weight: bold;
+}

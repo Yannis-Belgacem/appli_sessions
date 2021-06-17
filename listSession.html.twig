@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Liste des sessions {% endblock %}
+
+{% block body %}
+    <div class="titleBlock">
+        <h1>Liste des sessions</h1>
+    </div>
+    <table class="uk-table uk-table-striped">
+        <thead>
+            <tr>
+                <th> Intitulé </th>
+                <th> Inscrire un stagiaire </th>
+                {% if app.user.hasRole("ROLE_ADMIN") or app.user.hasRole("ROLE_SUPER_ADMIN")%}
+                    <th> Ajouter un module </th>
+                {% endif %}
+                <th> Places théoriques</th>              
+                <th> Places réservées </th>
+                <th> Places restantes </th>
+                <th> Débute le: </th>
+                <th> Finit le: </th>
+                <th> Durée totale programmée (jours) </th>
+                <th> Durée totale actuelle (jours) </th>
+                <th> Formateur réferent </th>
+                {% if app.user.hasRole("ROLE_ADMIN") or app.user.hasRole("ROLE_SUPER_ADMIN")%}
+                    <th> Edition </th>
+                    <th> Suppression </th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for session in sessions %}
+                {# si la session n'a plus de places, une couleur différente est affiché sur toute la ligne pour le signifier #}
+                {% if session.nbPlace - session.stagiaires | length > 0 %}                   
+                    <tr>
+                {% else %}
+                    <tr id="complet"> 
+                {% endif %}              
+                    <td><a href="{{ path('session_show', {'id':session.id}) }}">{{ session.intitule }} </a></td>
+                    {# n'affiche plus le bouton d'ajout de stagiaires lorsque l'effectif est déjà complet  #}
+                    {% if session.nbPlace - session.stagiaires | length > 0 %}
+                        <td><a class="uk-button uk-button-primary" href="{{ path('stagiaire_session_add', {'id':session.id}) }}">Stagiaire <i class="fas fa-plus"></i></a></td>
+                    {% else %}
+                    {# affiche que la session est complète, une classe CSS permet de donner une indication visuelle claire #}
+                        <td id="completCase"> COMPLET <i class="fas fa-ban"></i> </td>
+                    {% endif %}
+                    </td>
+                    {# n'affiche pas le bouton d'ajout de modules si l'utilisateur n'a pas le rôle requis #}
+                    {% if app.user.hasRole("ROLE_ADMIN") or app.user.hasRole("ROLE_SUPER_ADMIN")%}
+                        {# si la durée de modules ajoutés à la session correspond à celle prédéfinie, n'affiche pas le bouton #}
+                        {% if session.finalDuration != session.actualDuration %}                       
+                            <td><a class="uk-button uk-button-primary" href="{{ path('module_session_add', {'id':session.id}) }}">Module <i class="fas fa-plus"></i></a></td>
+                        {% else %}
+                            {# autre classe CSS pour indiquer que la session est addez fournie en modules  #}
+                            <td class="durationMatch">Programme <i class="far fa-check-circle"></i></td>
+                        {% endif %}
+                    {% endif %}
+                    
+                    </td>
+                    <td>{{ session.nbPlace }}</td>
+                    <td>{{ session.stagiaires | length }}</td>
+                    {% if session.nbPlace - session.stagiaires | length > 0 %}
+                        <td>{{ session.nbPlace - session.stagiaires | length }}</td>
+                    {% else %}
+                        <td id="completCase"> COMPLET <i class="fas fa-ban"></i> </td>
+                    {% endif %}
+                    <td>{{ session.dateDebut | date ('d/m/Y') }}</td>
+                    <td>{{ session.dateFin | date ('d/m/Y') }}</td>
+                    {% if session.finalDuration == session.actualDuration %}
+                        <td class="durationMatch">{{ session.finalDuration }}</td>
+                        <td class="durationMatch">{{ session.actualDuration }} <i class="far fa-check-circle"></i></td>
+                    {% else %}
+                        <td class="durationNoMatch">{{ session.finalDuration }}</td>
+                        <td class="durationNoMatch">{{ session.actualDuration }}</td>                       
+                    {% endif %}
+                    <td>{{ session.formateur.prenom }} {{ session.formateur.nom }} </td>
+                    {% if app.user.hasRole("ROLE_ADMIN") or app.user.hasRole("ROLE_SUPER_ADMIN")%}                       
+                        <td><a class="uk-button uk-button-primary" href="{{ path('session_edit', {'id':session.id}) }}"><i class="fas fa-pen"></i></a></td>
+                        <td class="cent"><a class="butcenter" href="{{ path('session_delete', {'id':session.id}) }}"><i class="fas fa-trash"></a></td>
+                    {% else %}
+                    {% endif %}
+                </tr>
+            {% endfor %}
+                    {% if app.user.hasRole("ROLE_ADMIN") or app.user.hasRole("ROLE_SUPER_ADMIN") %}
+                        <span><a class="addButton" href="{{ path('session_add')}}"><i class="fas fa-plus"></i>Ajouter une session</a></span>
+                    {% else %}
+                    {% endif %}
+                    <span><a class="addButton" href="{{ path('formateur_add')}}"><i class="fas fa-plus"></i>Ajouter un formateur</a></span>
+                    <div class="pagination">{{ knp_pagination_render(sessions) }}</div>
+{% endblock %}

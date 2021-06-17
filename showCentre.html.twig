@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}Informations sur le centre centre{% endblock %}
+ 
+{% block body %}
+        <a class="addButton" href="{{ path('centre_list') }}"><i class="fas fa-arrow-left"></i>Retour aux centres</a>
+        <h3 class="infostagiaire"><i class="fas fa-info-circle"></i>Fiche centre</h3>
+        <div class="z-depth-2">
+            <h3>{{ centre.nomCentre }}</h3>
+                <ul>
+                    <li> Région: {{ centre.region }}</li>
+                    <li> Commune: {{ centre.ville }} ({{ centre.codePostal }})</li>
+                </ul>
+            <ul>Liste des salles : 
+            {% for salle in centre.salles %}
+                <li> - {{ salle.numero }}</a></li>
+            {% else %}
+                Aucune salle renseignée!
+            {% endfor %}
+             {% if app.user.hasRole("ROLE_SUPER_ADMIN")%}                       
+                {# <td><a class="whiteLink" href="{{ path('addSalleToCentre', {'id':centre.id}) }}"><i class="fas fa-plus"></i> Ajouter un module </a></td> #}
+            {% endif %}
+            </ul><br>
+            
+            <a class="waves-effect waves-light btn grey darken-4grey darken-4" href="{{ path('centre_edit', {'id':centre.id}) }}">Editer</a>
+            <a class="waves-effect waves-light btn grey darken-4grey darken-4" href="{{ path('centre_delete', {'id':centre.id}) }}">Supprimer</a><br>
+
+        </div>
+        
+{% endblock %}

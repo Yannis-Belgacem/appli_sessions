@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un module à la session {{ session.intitule }}{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    <div class="titleBlock"> 
+        <h2>Ajouter un module à une session</h2>
+    </div>
+    <div class="formWrapper">
+        {{ form_start(moduleToSessionFormType) }}
+            {{ form_row(moduleToSessionFormType.nbJour) }}
+        {{ form_end(moduleToSessionFormType) }}
+    </div>
+
+    <a class="addButton" href="{{ path('session_show', {'id':session.id}) }}"><i class="fas fa-arrow-left"></i> Page info {{ session.intitule }}</a>
+    
+{% endblock %}
