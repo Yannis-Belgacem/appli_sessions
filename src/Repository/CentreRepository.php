@@ -2,25 +2,35 @@
 
 namespace App\Repository;
 
-use App\Entity\Categorie;
+use App\Entity\Centre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Categorie|null find($id, $lockMode = null, $lockVersion = null)
- * @method Categorie|null findOneBy(array $criteria, array $orderBy = null)
- * @method Categorie[]    findAll()
- * @method Categorie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Centre|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Centre|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Centre[]    findAll()
+ * @method Centre[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CategorieRepository extends ServiceEntityRepository
+class CentreRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Categorie::class);
+        parent::__construct($registry, Centre::class);
+    }
+
+    public function getAllCentres(){
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT c
+                FROM App\Entity\centre c
+                ORDER BY c.nomCentre '
+        );
+    return $query->execute();
     }
 
     // /**
-    //  * @return Categorie[] Returns an array of Categorie objects
+    //  * @return Centre[] Returns an array of Centre objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +47,7 @@ class CategorieRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Categorie
+    public function findOneBySomeField($value): ?Centre
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')
