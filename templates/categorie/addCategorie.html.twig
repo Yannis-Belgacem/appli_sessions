@@ -1,1 +1,20 @@
+{% extends 'base.html.twig' %}
 
+{% block title %}Ajouter/éditer une catégorie{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="titleBlock"> 
+        <h2>Ajouter/éditer une catégorie</h2>
+    </div>
+    <div class="formWrapper">
+        {{ form_start(categorieFormType) }}
+            {{ form_row(categorieFormType.nom) }}        
+        {{ form_end(categorieFormType) }}
+    </div>
+
+    <a class="addButton" href="{{ path('module_list') }}"><i class="fas fa-arrow-left"></i>Retour à la liste</a>
+{% endblock %}
