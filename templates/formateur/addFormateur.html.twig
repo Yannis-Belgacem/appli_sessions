@@ -1,1 +1,23 @@
+{% extends 'base.html.twig' %}
 
+{% block title %}Ajouter/éditer un formateur{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    <div class="titleBlock"> 
+        <h2>Ajouter/éditer un formateur</h2>
+    </div>
+
+    <div class="formWrapper">
+        {{ form_start(formateurFormType) }}
+        {{ form_row(formateurFormType.nom) }}
+        {{ form_row(formateurFormType.prenom) }}
+        {{ form_row(formateurFormType.email) }}
+    </div>
+
+    <a class="addButton" href="{{ path('session_list') }}"><i class="fas fa-arrow-left"></i>Retour à la liste</a>
+
+    {{ form_end(formateurFormType) }}
+{% endblock %}
