@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscrire un utilisateur{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="titleBlock">
+        <h2>Inscrire un utilisateur</h1>
+    </div>
+    
+    <div class="formWrapper">
+        {{ form_start(userFormType) }}
+            {{ form_row(userFormType.roles) }}
+            <button type="submit" class="btn">Inscrire</button>
+        {{ form_end(userFormType) }}
+    </div>
+
+    <a class="addButton" href="{{ path('home') }}"><i class="fas fa-arrow-left"></i>Retour à l'accueil</a>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+   
+    <div class="titleBlock">
+        <h1>Liste des utilisateurs</h1>
+    </div>
+
+    {# <div class="listSearchField">
+        {{ form_start(searchForm) }}
+        {{ form_row(searchForm.email, {'label': " ", 'attr': {'placeholder': 'Chercher un user par son adresse mail'}}) }}
+        <button class="searchButton">Rechercher <i class="fas fa-search"></i></button>
+        {{ form_end(searchForm) }}
+    </div> #}
+
+  <table class="uk-table uk-table-striped">
+        <thead>
+            <tr>
+                <th> Nom complet</th>
+                <th> Email </th>
+                {# <th> Rôle </th> #}
+                <th> Edition </th>
+                <th> Suppression </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td><a href="{{ path('user_show', {'id':user.id}) }}">{{ user.nom |upper ~' '~ user.prenom}} </a></td> 
+                    <td> {{ user.email }} </td>
+                    {# <td> {{ user.roles }} </td> #}
+                    <td><a href="{{ path('user_edit', {'id':user.id}) }}"><i class="fas fa-pen"></i></a></td>
+                    <td><a href="{{ path('user_delete', {'id':user.id}) }}"><i class="fas fa-user-minus"></i></a></td>
+                </tr>
+            {% endfor %}
+                <div class="pagination">{{ knp_pagination_render(users) }}</div>
+                <span><a class="addButton" href="{{ path('app_register')}}"><i class="fas fa-plus"></i>Ajouter utilisateur</a></span>
+{% endblock %}
