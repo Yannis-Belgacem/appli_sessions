@@ -1,1 +1,27 @@
+{% extends 'base.html.twig' %}
 
+{% block title %}Ajouter/éditer un(e) stagiaire{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="titleBlock">
+        <h1>Ajouter un(e) stagiaire</h1>
+    </div>
+    <div class="formWrapper">
+        {{ form_start(stagiaireFormType) }}
+            {{ form_row(stagiaireFormType.nom) }}
+            {{ form_row(stagiaireFormType.prenom) }}
+            {{ form_row(stagiaireFormType.email) }}
+            {{ form_row(stagiaireFormType.dateNaissance) }}
+            {{ form_row(stagiaireFormType.ville) }}
+            {{ form_row(stagiaireFormType.adresse) }}
+            {{ form_row(stagiaireFormType.telephone) }}
+            {{ form_row(stagiaireFormType.sexe) }}
+        {{ form_end(stagiaireFormType) }}
+    </div>
+
+    <a class="addButton" href="{{ path('stagiaire_list') }}"><i class="fas fa-arrow-left"></i>Retour aux stagiaires</a>
+{% endblock %}
